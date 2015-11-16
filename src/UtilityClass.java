@@ -2,9 +2,9 @@
  * Created by Johan on 04.11.2015.
  */
 
-/** 1. Vi trenger en «utility» klasse som gir oss mulighet til å konvertere fra en streng representasjon av
- hex eller bit, til en int representasjon av tallet. Konverteringen skal også kunne gå motsatt vei (fra intl
- til hex eller binære strenger). Alle tall som påtreffes er positive, fortegn er ikke en problemstilling i
+/** 1. Vi trenger en ï¿½utilityï¿½ klasse som gir oss mulighet til ï¿½ konvertere fra en streng representasjon av
+ hex eller bit, til en int representasjon av tallet. Konverteringen skal ogsï¿½ kunne gï¿½ motsatt vei (fra intl
+ til hex eller binï¿½re strenger). Alle tall som pï¿½treffes er positive, fortegn er ikke en problemstilling i
  oppgaven.
  */
 
@@ -157,12 +157,36 @@ public class UtilityClass {
 
     public String bitWiseOR(String first, String second)
     {
-        return "";
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0; i < BIT_LENGTH; i++)
+        {
+            if(first.charAt(i) == '1' || second.charAt(i) == '1')
+            {
+                builder.append('1');
+            }
+            else
+            {
+                builder.append('0');
+            }
+        }
+        return builder.toString();
     }
 
-    public String bitWiseAND()
+    public String bitWiseAND(String first, String second)
     {
-        return "";
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0; i < BIT_LENGTH; i++)
+        {
+            if(first.charAt(i) == '1' && second.charAt(i) == '1')
+            {
+                builder.append('1');
+            }
+            else
+            {
+                builder.append('0');
+            }
+        }
+        return builder.toString();
     }
 
 }

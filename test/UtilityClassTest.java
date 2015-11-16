@@ -13,26 +13,26 @@ import static org.junit.Assert.*;
  * Bitstrenger:
  * En streng kan ha lengde 0 til 24
  * En tom streng skal returnere 0
- * En streng som er lengre enn 24 skal forårsake at en IllegalArgumentException kastes
- * En streng som har andre tegn enn 0 og 1 skal forårsake at en IllegalArgumentException kastes
- * Du skal kunne sende inn en streng med 0 og 1 (kun), heretter kalt bitstreng, og få returnert
+ * En streng som er lengre enn 24 skal forï¿½rsake at en IllegalArgumentException kastes
+ * En streng som har andre tegn enn 0 og 1 skal forï¿½rsake at en IllegalArgumentException kastes
+ * Du skal kunne sende inn en streng med 0 og 1 (kun), heretter kalt bitstreng, og fï¿½ returnert
  * korresponderende int verdi
- * Du skal kunne sende inn en int og få returnert den som en bitstreng med lengde 24
+ * Du skal kunne sende inn en int og fï¿½ returnert den som en bitstreng med lengde 24
  *
  * Hex strenger:
  * En streng kan ha lengde 0 til 6
  * En tom streng skal returnere 0
- * En streng som er lengre enn 6 skal forårsake at en IllegalArgumentException kastes
- * En streng som har andre tegn enn 01234567890ABCDEF / abcdef skal forårsake at en
+ * En streng som er lengre enn 6 skal forï¿½rsake at en IllegalArgumentException kastes
+ * En streng som har andre tegn enn 01234567890ABCDEF / abcdef skal forï¿½rsake at en
  * IllegalArgumentException kastes
  *
  * Bit operasjoner
- * Operasjonene bitwise OR og bitwise AND skal kunne utføres på to bitstrenger. Retur er en streng på
+ * Operasjonene bitwise OR og bitwise AND skal kunne utfï¿½res pï¿½ to bitstrenger. Retur er en streng pï¿½
  * 24 tegn.
- * Det er ikke tillatt å bruke wrapper klasser sin metode parseInt() eller lignende eksisterende metoder
- * for å utføre konvertering til / fra bit / hex strenger til / fra int.
+ * Det er ikke tillatt ï¿½ bruke wrapper klasser sin metode parseInt() eller lignende eksisterende metoder
+ * for ï¿½ utfï¿½re konvertering til / fra bit / hex strenger til / fra int.
  *
- * navnPåMetodeSomTestes_InputParametre_ForventetResultat()
+ * navnPï¿½MetodeSomTestes_InputParametre_ForventetResultat()
  *
  */
 public class UtilityClassTest
@@ -129,6 +129,18 @@ public class UtilityClassTest
     {
         assertThat(utility.intToHex(11259375), is("ABCDEF"));
         assertThat(utility.intToHex(10), is("00000A"));
+    }
+
+    @Test
+    public void bitWiseOR_shouldReturnCorrectString_GivenInput()
+    {
+        assertThat(utility.bitWiseOR("010010000100100001001000", "101110001011100010111000"), is("111110001111100011111000"));
+    }
+
+    @Test
+    public void bitWiseAND_shouldReturnCorrectString_GivenInput()
+    {
+        assertThat(utility.bitWiseAND("010010000100100001001000", "101110001011100010111000"), is("000010000000100000001000"));
     }
 
 }
