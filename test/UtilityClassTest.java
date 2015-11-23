@@ -134,13 +134,13 @@ public class UtilityClassTest
     @Test
     public void bitWiseOR_shouldReturnCorrectString_GivenInput()
     {
-        assertThat(utility.bitWiseOR("010010000100100001001000", "101110001011100010111000"), is("111110001111100011111000"));
+        assertThat(utility.binaryOROperation("010010000100100001001000", "101110001011100010111000"), is("111110001111100011111000"));
     }
 
     @Test
     public void bitWiseAND_shouldReturnCorrectString_GivenInput()
     {
-        assertThat(utility.bitWiseAND("010010000100100001001000", "101110001011100010111000"), is("000010000000100000001000"));
+        assertThat(utility.binaryANDOperation("010010000100100001001000", "101110001011100010111000"), is("000010000000100000001000"));
     }
 
 }

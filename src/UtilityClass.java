@@ -151,11 +151,21 @@ public class UtilityClass {
         return convertFromIntToHex(value);
     }
 
+    public String binaryOROperation(String first, String second)
+    {
+        checkBitLenth(first);
+        checkBitString(first);
+        checkBitLenth(second);
+        checkBitString(second);
+        return bitWiseOR(first, second);
+    }
 
+    public String binaryOROperation(int first, int second)
+    {
+        return bitWiseOR(intToBit(first), intToBit(second));
+    }
 
-
-
-    public String bitWiseOR(String first, String second)
+    private String bitWiseOR(String first, String second)
     {
         StringBuilder builder = new StringBuilder();
         for(int i = 0; i < BIT_LENGTH; i++)
@@ -172,7 +182,21 @@ public class UtilityClass {
         return builder.toString();
     }
 
-    public String bitWiseAND(String first, String second)
+    public String binaryANDOperation(String first, String second)
+    {
+        checkBitLenth(first);
+        checkBitString(first);
+        checkBitLenth(second);
+        checkBitString(second);
+        return bitWiseAND(first, second);
+    }
+
+    public String binaryANDOperation(int first, int second)
+    {
+        return bitWiseAND(intToBit(first), intToBit(second));
+    }
+
+    private String bitWiseAND(String first, String second)
     {
         StringBuilder builder = new StringBuilder();
         for(int i = 0; i < BIT_LENGTH; i++)
