@@ -1,13 +1,3 @@
-/**
- * Created by Johan on 04.11.2015.
- */
-
-/** 1. Vi trenger en �utility� klasse som gir oss mulighet til � konvertere fra en streng representasjon av
- hex eller bit, til en int representasjon av tallet. Konverteringen skal ogs� kunne g� motsatt vei (fra intl
- til hex eller bin�re strenger). Alle tall som p�treffes er positive, fortegn er ikke en problemstilling i
- oppgaven.
- */
-
 
 public class UtilityClass {
     private final String ALLOWED_HEX_CHARACTERS = "0123456789ABCDEF";
@@ -19,20 +9,27 @@ public class UtilityClass {
         // Constructor
     }
 
-    private void checkBitLenth(String checkBit)
+    protected void checkOperator(String operator)
     {
-        //String oneZero = "[01]+";
-        if(checkBit.length() > 24)
+        if(!operator.matches("[12]+") || operator.length() != 1)
         {
-            throw new IllegalArgumentException("String was too long");
+            throw new IllegalArgumentException("Exception: Unexpected Operator");
         }
     }
 
-    private void checkBitString(String checkBit)
+    protected void checkBitLength(String checkBit)
+    {
+        if(checkBit.length() > 24)
+        {
+            throw new IllegalArgumentException("Exception: Given String Was Too Long");
+        }
+    }
+
+    protected void checkBitString(String checkBit)
     {
         if(!checkBit.matches("[01]+") && checkBit.length() != 0)
         {
-            throw new IllegalArgumentException("String did not contain only 1 and 0");
+            throw new IllegalArgumentException("Exception: Given Data Contains Errors");
         }
     }
 
@@ -46,29 +43,24 @@ public class UtilityClass {
         return result;
     }
 
-    /** Returns the int value of a bit string */
     public int bitToInt(String bitString)
     {
-        checkBitLenth(bitString);
+        checkBitLength(bitString);
         checkBitString(bitString);
         return convertFromBitToInt(bitString);
     }
 
-    //Fjern extra kode!!!
     private String convertFromIntToBit(int value)
     {
-        String bitString = "";
         StringBuilder builder = new StringBuilder();
         for(int i = 0;i < BIT_LENGTH; i++)
         {
             if (value % 2 == 1)
             {
-                bitString = '1' + bitString;
                 builder.append('1');
             }
             else if (value % 2 == 0)
             {
-                bitString = '0' + bitString;
                 builder.append('0');
             }
             value = value / 2;
@@ -80,7 +72,7 @@ public class UtilityClass {
     {
         if(value < 0 || value > 16777215)
         {
-            throw new IllegalArgumentException("Integer contains invalid value");
+            throw new IllegalArgumentException("Exception: Given Data Is Out Of Bounds");
         }
     }
 
@@ -90,12 +82,7 @@ public class UtilityClass {
         return convertFromIntToBit(value);
     }
 
-
-
-
-
-
-    private String processHexString(String hexString)
+    protected String processHexString(String hexString)
     {
         hexString = hexString.toUpperCase();
         if(hexString.equals(""))
@@ -104,7 +91,7 @@ public class UtilityClass {
         }
         if(!hexString.matches("[0-9A-F]+") || hexString.length() > 6)
         {
-            throw new IllegalArgumentException("Invalid Hex String");
+            throw new IllegalArgumentException("Exception: Given Data Contains Errors");
         }
         else
         {
@@ -153,9 +140,9 @@ public class UtilityClass {
 
     public String binaryOROperation(String first, String second)
     {
-        checkBitLenth(first);
+        checkBitLength(first);
         checkBitString(first);
-        checkBitLenth(second);
+        checkBitLength(second);
         checkBitString(second);
         return bitWiseOR(first, second);
     }
@@ -184,9 +171,9 @@ public class UtilityClass {
 
     public String binaryANDOperation(String first, String second)
     {
-        checkBitLenth(first);
+        checkBitLength(first);
         checkBitString(first);
-        checkBitLenth(second);
+        checkBitLength(second);
         checkBitString(second);
         return bitWiseAND(first, second);
     }
